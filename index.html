@@ -65,6 +65,9 @@
                 if (unsimplified > 99999999) {
                     return "Input value too large!"
                 }
+                if (unsimplified === -1) {
+                    return "i"
+                }
                 var tocalculate = Math.abs(unsimplified)
                 // 1. check for initial perfect square
                 if (Math.sqrt(tocalculate) % 1 === 0) {
