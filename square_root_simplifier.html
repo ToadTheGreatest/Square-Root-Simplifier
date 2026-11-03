@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Square Root Simplifier</title>
+        <style>
+            .inputoutput {
+                font-size: 20px;
+                justify-self: center;
+            }
+            .instructions {
+                text-align: center;
+                text-justify: inherit;
+            }
+            body, div {
+                justify-content: center;
+                justify-items: center;
+                text-justify: center;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                background-color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <header style="position: relative; width: 100%; height: 25vh; overflow: hidden; margin: 0; padding: 0;">
+            <div style="
+                background-color: blue; 
+                transform: translateX(-50%) rotate(3deg); 
+                width: 200vw; 
+                height: 15vh; 
+                top: -2vh; 
+                left: 50%; 
+                position: absolute;">
+            </div>
+            <div style="
+                background-color: cyan; 
+                transform: translateX(-50%) rotate(-5deg); 
+                width: 200vw; 
+                height: 15vh; 
+                top: -4vh; 
+                left: 50%; 
+                position: absolute;
+                z-index: -1;">
+            </div>
+        </header>
+        <div style="justify-content: center; width: 100vw; text-align: center; position: absolute; top: 18vh">
+            <span>This site simplifies square roots. Check your work with this calculator by inputting a square root in the input box.</span>
+            <span>You do not need to input the square root symbol. The calculator will automatically calculate the simplified square root for the input.</span>
+            <span>If the input is a perfect square, it will output the result. If it cannot be simplified, you will get your input back.</span>
+        </div>
+        <div style="justify-content: center; position: absolute; top: 50vh">
+            <div style="justify-content: center">
+                <span class="inputoutput">&radic;</span>
+                <input type="number" id="input"><br><br>
+            </div>
+            <div>
+                <span id="simplified" class="inputoutput"></span>
+            </div>
+        </div>
+        <script>
+            // Algorithm for simplifying square roots
+            function calculate(unsimplified) {
+                if (unsimplified > 99999999) {
+                    return "Input value too large!"
+                }
+                var tocalculate = Math.abs(unsimplified)
+                // 1. check for initial perfect square
+                if (Math.sqrt(tocalculate) % 1 === 0) {
+                    return unsimplified < 0 ? `${Math.sqrt(tocalculate)}i` : `${Math.sqrt(tocalculate)}`;
+                }
+                // 2. loop through all possible factors
+                for (var x = 2; x < (tocalculate / 2) + 1; x++) {
+                    // 3. check for valid factor
+                    if (tocalculate % x === 0) {
+                        const factor = tocalculate / x
+                        // 4. check for valid square root
+                        if (Math.sqrt(factor) % 1 === 0) {
+                            // 5. if all works then return
+                            return unsimplified < 0 ? `${Math.sqrt(factor)}i&radic;${x}` :`${Math.sqrt(factor)}&radic;${x}`;
+                        }
+                    }
+                }
+                // 6. failsafe if no good factor
+                return `&radic;${unsimplified}`
+            }
+            function go() {
+                // calls the calculate function
+                var uinput = document.getElementById("input");
+                var uoutput = document.getElementById("simplified");
+                out = calculate(uinput.value);
+                console.log(out);
+                uoutput.innerHTML = out;
+            }
+            document.getElementById("input").addEventListener('input', go);
+        </script>
+    </body>
+</html>
