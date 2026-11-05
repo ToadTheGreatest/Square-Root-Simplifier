@@ -65,7 +65,7 @@
                 if (unsimplified > 99999999) {
                     return "Input value too large!"
                 }
-                if (unsimplified === -1) {
+                if (unsimplified == -1) {
                     return "i"
                 }
                 var tocalculate = Math.abs(unsimplified)
@@ -92,7 +92,7 @@
                 // calls the calculate function
                 var uinput = document.getElementById("input");
                 var uoutput = document.getElementById("simplified");
-                out = calculate(uinput.value);
+                out = calculate(parseFloat(uinput.value));
                 console.log(out);
                 uoutput.innerHTML = out;
             }
