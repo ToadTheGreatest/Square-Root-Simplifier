@@ -63,10 +63,13 @@
             // Algorithm for simplifying square roots
             function calculate(unsimplified) {
                 if (unsimplified > 99999999) {
-                    return "Input value too large!"
+                    return "Input value too large!";
+                }
+                if (unsimplified == NaN) {
+                    return "";
                 }
                 if (unsimplified == -1) {
-                    return "i"
+                    return "i";
                 }
                 var tocalculate = Math.abs(unsimplified)
                 // 1. check for initial perfect square
@@ -77,7 +80,7 @@
                 for (var x = 2; x < (tocalculate / 2) + 1; x++) {
                     // 3. check for valid factor
                     if (tocalculate % x === 0) {
-                        const factor = tocalculate / x
+                        const factor = tocalculate / x;
                         // 4. check for valid square root
                         if (Math.sqrt(factor) % 1 === 0) {
                             // 5. if all works then return
@@ -86,7 +89,7 @@
                     }
                 }
                 // 6. failsafe if no good factor
-                return `&radic;${unsimplified}`
+                return `&radic;${unsimplified}`;
             }
             function go() {
                 // calls the calculate function
