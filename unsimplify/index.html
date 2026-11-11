@@ -72,7 +72,7 @@
                 var uinput = document.getElementById("input");
                 var uinpu2 = document.getElementById("mult")
                 var uoutput = document.getElementById("simplified");
-                out = calculate(parseFloat(uinput.value, uinpu2.value));
+                out = calculate(parseFloat(uinput.value), parseFloat(uinpu2.value));
                 console.log(out);
                 uoutput.innerHTML = out;
             }
